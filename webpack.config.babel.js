@@ -1,8 +1,9 @@
 import { resolve } from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({ template: __dirname + '/public/index.html' });
+
 export default {
-	entry: './src/index.js',
+	entry: ['babel-polyfill', './src/index.jsx'],
 	output: {
 		path: resolve(__dirname, '/public'),
         filename: 'bundle.js'
@@ -16,7 +17,7 @@ export default {
 	},
 	module: {
 		rules: [{
-			test: /\.(s*)css$/,
+			test: /\.(sass|scss|css)$/i,
 			use: ['style-loader', 'css-loader', 'sass-loader']
 		}, {
 			test: /\.jsx?$/,
