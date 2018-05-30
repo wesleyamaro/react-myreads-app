@@ -1,0 +1,27 @@
+@import './colors'
+@import './media-query'
+
+input[type="text"],
+select
+	font-size: 1.4rem
+	font-weight: 300
+	padding: 10px 12px
+	border: 1px solid $light-gray
+
+	&.small
+		width: 80px
+		@include mobile-screen
+			width: 100%
+
+	&.medium
+		width: 250px
+		@include mobile-screen
+			width: 100%
+
+	&.large
+		width: 450px
+		@include mobile-screen
+			width: 100%
+
+	&.full
+		width: 100%

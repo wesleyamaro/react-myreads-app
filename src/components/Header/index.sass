@@ -1,0 +1,33 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/media-query'
+
+header
+	background-color: $white
+	padding: 20px 0
+	width: 100%
+
+	.wrapper
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+		align-items: center
+
+		h1
+			font-size: 2rem
+			text-transform: uppercase
+			font-weight: 400
+			@include mobile-screen
+				width: 100%
+				text-align: center
+
+			a
+				text-decoration: none
+				color: $black
+
+		form
+			display: flex
+			justify-content: flex-end
+			width: 50%
+			@include mobile-screen
+				width: 100%
+				margin-top: 15px

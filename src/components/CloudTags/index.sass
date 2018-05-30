@@ -1,0 +1,41 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/mixins'
+@import '../../assets/styles/media-query'
+
+.cloud-tags
+	width: 100%
+	display: flex
+	flex-wrap: wrap
+	justify-content: flex-start
+	margin-bottom: 40px
+	@include mobile-screen
+		justify-content: center
+
+	li
+		list-style: none
+		display: inline-flex
+		background-color: $light-gray
+		font-size: 1.4rem
+		font-weight: 300
+		margin-right: 7px
+		@include hover-animation
+		@include mobile-screen
+			margin-bottom: 7px
+
+		&:last-child
+			margin-right: 0px
+
+		a
+			display: block
+			padding: 15px
+			color: $black
+			text-decoration: none
+			@include hover-animation
+
+		&:hover,
+		&.cloud-tags--active
+			background-color: $black
+
+			a
+				color: white
+

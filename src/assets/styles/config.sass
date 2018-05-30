@@ -1,0 +1,63 @@
+@import './colors'
+@import './media-query'
+
+*
+	padding: 0
+	margin: 0
+
+html,
+body
+	width: 100%
+	height: 100%
+	font-size: 10px
+	font-family: 'Roboto', sans-serif
+
+body
+	background-color: $bg
+
+#root
+	width: 100%
+	height: 100%
+
+a,
+div,
+header,
+footer,
+article,
+main,
+section,
+form,
+input,
+select,
+button,
+figure,
+img,
+ul,
+li,
+dl,
+dt,
+dd,
+span
+	box-sizing: border-box
+
+img,
+a img
+	border: 0
+
+ul
+	margin: 0
+	padding: 0
+
+.wrapper
+	width: 1500px
+	margin: 0 auto
+
+	@include web-screen
+		width: 100%
+		margin: 0
+		padding: 0 25px
+
+	@include mobile-screen
+		padding: 0 20px
+		width: 100%
+		margin: 0
