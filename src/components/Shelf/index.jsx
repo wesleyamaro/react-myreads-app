@@ -5,61 +5,48 @@ import './index.sass';
 
 class Shelf extends Component {
 	render() {
+		const props = this.props;
+
 		return(
 			<dl className="shelf">
-				<dt>{this.props.title}</dt>
-				<dd>
-					<div className="book-wrapper">
-						<figure>
-							<img src="http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api" alt=" " />
-						</figure>
+				<dt>{props.title}</dt>
+				{
+					props.books.map((book) => {
+						return(
+							<dd key={book.id}>
+								<div className="book-wrapper">
+									<figure>
+										<img src={book.imageLinks.smallThumbnail} alt={book.title} />
+									</figure>
 
-						<div className="book-description">
-							<p className="book-title">To Kill a Mockingbird</p>
-							<p className="book-authors">Harper Lee</p>
-						</div>
-					</div>
+									<div className="book-description">
+										<p className="book-title" title={book.title}>{book.title}</p>
+										<p className="book-authors" title={book.authors}>{book.authors}</p>
+									</div>
+								</div>
 
-					<div className="book-status">
-						<select className="full">
-							<option value="none" disabled>Move to...</option>
-							<option value="currentlyReading">Currently Reading</option>
-							<option value="wantToRead">Want to Read</option>
-							<option value="read">Read</option>
-							<option value="none">None</option>
-						</select>
-					</div>
-				</dd>
-
-				<dd>
-					<div className="book-wrapper">
-						<figure>
-							<img src="http://books.google.com/books/content?id=yDtCuFHXbAYC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72RRiTR6U5OUg3IY_LpHTL2NztVWAuZYNFE8dUuC0VlYabeyegLzpAnDPeWxE6RHi0C2ehrR9Gv20LH2dtjpbcUcs8YnH5VCCAH0Y2ICaKOTvrZTCObQbsfp4UbDqQyGISCZfGN&source=gbs_api" alt=" " />
-						</figure>
-
-						<div className="book-description">
-							<p className="book-title">Ender's Game</p>
-							<p className="book-authors">Orson Scott Card</p>
-						</div>
-					</div>
-
-					<div className="book-status">
-						<select className="full">
-							<option value="none" disabled>Move to...</option>
-							<option value="currentlyReading">Currently Reading</option>
-							<option value="wantToRead">Want to Read</option>
-							<option value="read">Read</option>
-							<option value="none">None</option>
-						</select>
-					</div>
-				</dd>
+								<div className="book-status">
+									<select className="full" value={book.shelf} onChange={(e) => this.props.onChangeMoveShelf(e, book, book.shelf)}>
+										<option value="none" disabled>Move to...</option>
+										<option value="currentlyReading">Currently Reading</option>
+										<option value="wantToRead">Want to Read</option>
+										<option value="read">Read</option>
+										<option value="none">None</option>
+									</select>
+								</div>
+							</dd>
+						);
+					})
+				}
 			</dl>
 		);
 	}
 }
 
 Shelf.propTypes = {
-	title: PropTypes.string.isRequired
+	title: PropTypes.string.isRequired,
+	books: PropTypes.array.isRequired,
+	onChangeMoveShelf: PropTypes.func.isRequired
 };
 
 export default Shelf;

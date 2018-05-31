@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../Header/';
+import Home from '../Home/';
 import Footer from '../Footer/';
-import CloudTags from '../CloudTags';
-import Shelf from '../Shelf';
 
 class App extends Component {
 	render() {
@@ -11,13 +10,7 @@ class App extends Component {
 				<Header />
 
 				<main>
-					<div className="wrapper">
-						<CloudTags />
-
-						<Shelf title="Currently reading" />
-						<Shelf title="Want to read" />
-						<Shelf title="Have read" />
-					</div>
+					<Home />
 				</main>
 
 				<Footer />
