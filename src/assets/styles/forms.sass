@@ -1,4 +1,5 @@
 @import './colors'
+@import './mixins'
 @import './media-query'
 
 input[type="text"],
@@ -8,6 +9,10 @@ select
 	padding: 10px 12px
 	border: 1px solid $light-gray
 	outline: 0
+	@include hover-animation
+
+	&:hover
+		border-color: $gray
 
 	&.small
 		width: 80px
