@@ -35,11 +35,10 @@ class Home extends Component {
 		const newShelf = e.target.value;
 
 		BooksAPI.update(book, newShelf).then(() => {
-			BooksAPI.get(book.id).then((newBook) => {
-				this.setState(prevState => {
-					prevState.myBooks[newShelf].push(newBook);
-					prevState.myBooks[oldShelf] = prevState.myBooks[oldShelf].filter(obj => obj.id !== book.id);
-				});
+			book.shelf = newShelf;
+			this.setState(prevState => {
+				prevState.myBooks[newShelf].push(book);
+				prevState.myBooks[oldShelf] = prevState.myBooks[oldShelf].filter(obj => obj.id !== book.id);
 			});
 		});
 	}
