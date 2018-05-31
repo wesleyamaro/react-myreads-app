@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import CloudTags from '../CloudTags';
-import Shelf from '../Shelf';
-import * as BooksAPI from '../../api/BooksAPI';
+import CloudTags from '../../components/CloudTags';
+import Shelf from '../../components/Shelf';
+import * as BooksAPI from '../../api/booksAPI';
+import * as TagsAPI from '../../api/tagsAPI';
 
 class Home extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			tags: [],
 			myBooks: {
 				currentlyReading: [],
 				read: [],
@@ -27,6 +29,10 @@ class Home extends Component {
 					wantToRead: obj.filter(val => val.shelf === 'wantToRead')
 				}
 			});
+		});
+
+		this.setState({
+			tags: TagsAPI.getAll()
 		});
 	}
 
@@ -48,7 +54,7 @@ class Home extends Component {
 
 		return(
 			<div className="wrapper">
-				<CloudTags />
+				<CloudTags tags={this.state.tags} />
 
 				<Shelf title="Currently reading" books={state.myBooks.currentlyReading} onChangeMoveShelf={this.onChangeMoveShelf} />
 				<Shelf title="Want to read" books={state.myBooks.wantToRead} onChangeMoveShelf={this.onChangeMoveShelf} />
