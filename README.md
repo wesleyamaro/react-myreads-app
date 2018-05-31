@@ -10,9 +10,20 @@ To get started developing right away:
 ## Backend Server
 To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
 
+* [`get`](#get)
 * [`getAll`](#getall)
 * [`update`](#update)
 * [`search`](#search)
+
+### `get`
+Method Signature:
+
+```js
+get(bookID)
+```
+
+* bookID: `<String>`
+* Returns a Promise which resolves to a JSON object containing the response data of the book request
 
 ### `getAll`
 Method Signature:
