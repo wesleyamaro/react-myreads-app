@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Search from '../Search/';
 
 import './index.sass';
@@ -9,7 +10,7 @@ class Header extends Component {
 			<header>
 				<div className="wrapper">
 					<h1>
-						<a href="#">MyReads App</a>
+						<Link to="/">MyReads App</Link>
 					</h1>
 
 					<Search />
