@@ -6,13 +6,8 @@ input[type="text"],
 select
 	font-size: 1.4rem
 	font-weight: 300
-	padding: 10px 12px
-	border: 1px solid $light-gray
 	outline: 0
 	@include hover-animation
-
-	&:hover
-		border-color: $gray
 
 	&.small
 		width: 80px
@@ -31,3 +26,17 @@ select
 
 	&.full
 		width: 100%
+
+input[type="text"]
+	padding: 10px 12px
+	border: 1px solid $light-gray
+
+	&:hover
+		border-color: $gray
+
+select
+	border: none
+	padding: 0
+	cursor: pointer
+	text-indent: 5px
+	border-radius: 0px
