@@ -22,22 +22,16 @@
 		font-weight: 300
 		margin: 0 7px 7px 0
 		white-space: nowrap
+		padding: 15px
+		color: $black
 		@include hover-animation
+		cursor: pointer
 
 		&:last-child
 			margin-right: 0px
 
-		a
-			display: block
-			padding: 15px
-			color: $black
-			text-decoration: none
-			@include hover-animation
-
 		&:hover,
 		&.cloud-tags--active
 			background-color: $black
-
-			a
-				color: white
+			color: $white
 
