@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Search from '../Search/';
 
 import './index.sass';
@@ -13,11 +14,15 @@ class Header extends Component {
 						<Link to="/">MyReads App</Link>
 					</h1>
 
-					<Search />
+					<Search onChangeSearchInput={(e) => this.props.onChangeSearchInput(e, this.props.history)} />
 				</div>
 			</header>
 		);
 	}
 }
 
-export default Header;
+Header.propTypes = {
+	onChangeSearchInput: PropTypes.func.isRequired
+};
+
+export default withRouter(Header);
