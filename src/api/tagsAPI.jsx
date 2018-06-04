@@ -3,11 +3,3 @@ const tags = ['Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen'
 export const getAll = () => {
 	return tags;
 };
-
-export const search = (key) => {
-	return tags.filter(tag => tag === key.capitalize());
-};
-
-String.prototype.capitalize = function() {
-	return this.charAt(0).toUpperCase() + this.slice(1);
-};

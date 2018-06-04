@@ -20,6 +20,11 @@ class CloudTags extends Component {
 		});
 	}
 
+	capitalizeWords(word) {
+		if(word && word.length > 1)
+			return word.charAt(0).toUpperCase() + word.slice(1);
+	}
+
 	render() {
 		const {onChangeTagsInput, history, keyOnSearch} = this.props;
 		const {tags} = this.state;
@@ -30,7 +35,7 @@ class CloudTags extends Component {
 					tags.map((tag, i) => {
 						return(
 							<li
-								className={keyOnSearch && keyOnSearch === tag ? 'cloud-tags--active' : ''}
+								className={keyOnSearch && this.capitalizeWords(keyOnSearch) === tag ? 'cloud-tags--active' : ''}
 								key={i}
 								onClick={() => onChangeTagsInput(tag, history)}>{tag}
 							</li>
