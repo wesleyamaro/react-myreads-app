@@ -5,24 +5,28 @@ import './index.sass';
 
 class BooksBox extends Component {
 	render() {
-		const props = this.props;
+		const { book, onChangeMoveShelf } = this.props;
 
 		return(
-			<li>
+			<li className="books-box">
 				<div className="book-wrapper">
 					<figure>
-						<img src={props.book.imageLinks.smallThumbnail} alt={props.book.title} />
+						<img
+							src={book.imageLinks ? book.imageLinks.thumbnail : ''}
+							alt={book.title} />
 					</figure>
 
 					<div className="book-description">
-						<p className="book-title" title={props.book.title}>{props.book.title}</p>
-						<p className="book-authors" title={props.book.authors}>{props.book.authors}</p>
+						<p className="book-title" title={book.title}>{book.title}</p>
+						<p className="book-authors" title={book.authors}>{book.authors}</p>
 					</div>
 				</div>
 
 				<div className="book-status">
-					<select className="full" value={props.book.shelf} onChange={(e) => props.onChangeMoveShelf(e, props.book, props.book.shelf)}>
-						<option value="none" disabled>Move to...</option>
+					<select className="full"
+						value={book.shelf ? book.shelf : 'none'}
+						onChange={(e) => onChangeMoveShelf(e, book, book.shelf)}>
+						<option value="" disabled>Move to...</option>
 						<option value="currentlyReading">Currently Reading</option>
 						<option value="wantToRead">Want to Read</option>
 						<option value="read">Read</option>

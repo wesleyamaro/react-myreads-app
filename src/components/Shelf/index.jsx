@@ -12,7 +12,7 @@ class Shelf extends Component {
 		return(
 			<div className="shelf">
 				<h2>{props.title}</h2>
-				<ul>
+				<ul className={props.books.length >= 8 ? 'justify-between' : ''}>
 					{
 						props.books.length ? (
 							props.books.map((book) => {
