@@ -1,10 +1,11 @@
-form
-	position: relative
+@import '../../assets/styles/media-query'
 
-	input[type="text"]
-		padding-right: 40px
+.search-input
+	padding-right: 40px
+	@include mobile-screen
+		margin-top: 15px
 
-	.icon-search
-		position: absolute
-		top: 5px
-		right: 5px
+.icon-search
+	position: absolute
+	top: 5px
+	right: 5px
