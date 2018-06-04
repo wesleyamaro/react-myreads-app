@@ -18,7 +18,7 @@ class SearchPage extends Component {
 					booksOnSearch.books.length >= 1 ? (
 						<div>
 							<h1>{booksOnSearch.books.length} result(s) for "<span>{booksOnSearch.query}</span>"</h1>
-							<ul className={`search-page-results ${booksOnSearch.books.length >= 8 ? 'justify-between' : ''}`}>
+							<ul>
 								{
 									booksOnSearch.books.map(book => {
 										return(

@@ -1,3 +1,5 @@
+@import '../../assets/styles/media-query'
+
 #search-page
 	.search-page-results
 		width: 100%
@@ -6,3 +8,17 @@
 		justify-content: flex-start
 		overflow: hidden
 		margin-bottom: 35px
+
+	ul
+		li
+			@include mobile-screen
+				width: 155px
+
+			.book-wrapper
+				@include mobile-screen
+					padding: 10px
+
+				img
+					@include mobile-screen
+						width: 133px
+						height: 202px
