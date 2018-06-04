@@ -55,9 +55,7 @@ class App extends Component {
 		});
 	}
 
-	onChangeSearchInput(e, history) {
-		let val = e.target.value;
-
+	onChangeSearchInput(val, history) {
 		if(val.length >= 1){
 			BooksAPI.search(val, 30).then((res) => {
 				if(res !== undefined) {
@@ -86,13 +84,15 @@ class App extends Component {
 					<Route exact path="/" render={() => (
 						<HomePage
 							myBooks={myBooks}
-							onChangeMoveShelf={this.onChangeMoveShelf} />
+							onChangeMoveShelf={this.onChangeMoveShelf}
+							onChangeTagsInput={this.onChangeSearchInput} />
 					)}/>
 
 					<Route path="/search" render={() => (
 						<SearchPage
 							booksOnSearch={booksOnSearch}
-							onChangeMoveShelf={this.onChangeMoveShelf} />
+							onChangeMoveShelf={this.onChangeMoveShelf}
+							onChangeTagsInput={this.onChangeSearchInput} />
 					)}/>
 				</main>
 

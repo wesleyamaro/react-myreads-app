@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import * as TagsAPI from '../../api/tagsAPI';
 
 import './index.sass';
@@ -20,12 +21,18 @@ class CloudTags extends Component {
 	}
 
 	render() {
+		const {onChangeTagsInput, history} = this.props;
+		const {tags} = this.state;
+
 		return(
 			<ul className="cloud-tags">
 				{
-					this.state.tags.map((tag, i) => {
+					tags.map((tag, i) => {
 						return(
-							<li key={i}><a href="#">{tag}</a></li>
+							<li
+								key={i}
+								onClick={() => onChangeTagsInput(tag, history)}>{tag}
+							</li>
 						);
 					})
 				}
@@ -35,7 +42,8 @@ class CloudTags extends Component {
 }
 
 CloudTags.propTypes = {
-
+	history: PropTypes.object,
+	onChangeTagsInput: PropTypes.func.isRequired,
 };
 
-export default CloudTags;
+export default withRouter(CloudTags);
