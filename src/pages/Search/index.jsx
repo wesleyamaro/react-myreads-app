@@ -1,37 +1,46 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CloudTags from '../../components/CloudTags';
 import BooksBox from '../../components/BooksBox/';
-import * as BooksAPI from '../../api/booksAPI';
-import * as TagsAPI from '../../api/tagsAPI';
-
+import EmptySearch from './emptySearch';
 
 import './index.sass';
 
-class Home extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			tags: [],
-			myBooks: {
-				currentlyReading: [],
-				read: [],
-				wantToRead: []
-			}
-		};
-	}
-
+class SearchPage extends Component {
 	render() {
+		const { tags, booksOnSearch, onChangeMoveShelf } = this.props;
+
 		return(
 			<div id="search-page" className="wrapper">
-				<CloudTags tags={this.state.tags} />
+				<CloudTags tags={tags} />
 
-				<ul className="search-page-results">
-					{/* <BooksBox /> */}
-				</ul>
+				{
+					booksOnSearch.books.length >= 1 ? (
+						<div>
+							<h1>{booksOnSearch.books.length} result(s) for "<span>{booksOnSearch.query}</span>"</h1>
+							<ul className={`search-page-results ${booksOnSearch.books.length >= 8 ? 'justify-between' : ''}`}>
+								{
+									booksOnSearch.books.map(book => {
+										return(
+											<BooksBox key={book.id} book={book} onChangeMoveShelf={onChangeMoveShelf} />
+										);
+									})
+								}
+							</ul>
+						</div>
+					) : (
+						<EmptySearch query={booksOnSearch.query} />
+					)
+				}
 			</div>
 		);
 	}
 }
 
-export default Home;
+SearchPage.propTypes = {
+	booksOnSearch: PropTypes.object.isRequired,
+	onChangeMoveShelf: PropTypes.func.isRequired,
+	tags: PropTypes.array.isRequired
+};
+
+export default SearchPage;
