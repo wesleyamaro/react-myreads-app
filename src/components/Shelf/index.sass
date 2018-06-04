@@ -1,10 +1,8 @@
-@import '../../assets/styles/colors'
 @import '../../assets/styles/media-query'
-@import '../../assets/styles/mixins'
 
 .shelf
 	width: 100%
-	margin-bottom: 50px
+	margin-bottom: 35px
 
 	ul
 		display: flex
@@ -14,57 +12,4 @@
 		@include mobile-screen
 			flex-wrap: nowrap
 			overflow-x: auto
-
-		li
-			color: $black
-			list-style: none
-			background-color: $white
-			width: 175px
-			border: 1px solid $light-gray
-
-			&+li
-				margin-left: 15px
-
-			.book-wrapper
-				padding: 15px
-
-				figure
-					width: 100%
-					margin-bottom: 10px
-					text-align: center
-
-					img
-						width: 145px
-						height: 212px
-						display: inline-flex
-
-				.book-description
-					.book-title
-						width: 100%
-						font-size: 1.4rem
-						line-height: 1.8rem
-						@include ellipsis
-
-					.book-authors
-						width: 100%
-						margin: 5px 0 0
-						font-size: 1.4rem
-						line-height: 1.8rem
-						font-weight: 300
-						@include ellipsis
-
-			.book-status
-				background-color: $dark-gray
-				padding: 0 10px
-
-				select
-					width: 100%
-					border: none
-					background-color: transparent
-					color: $white
-					font-weight: 300
-					font-size: 1.4rem
-					padding: 0
-					height: 45px
-					@include mobile-screen
-						height: 60px
+			justify-content: flex-start

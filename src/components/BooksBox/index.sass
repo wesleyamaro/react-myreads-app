@@ -1,0 +1,60 @@
+@import '../../assets/styles/colors'
+@import '../../assets/styles/media-query'
+@import '../../assets/styles/mixins'
+
+li.books-box
+	color: $black
+	list-style: none
+	background-color: $white
+	width: 175px
+	border: 1px solid $light-gray
+	display: inline-flex
+	flex-wrap: wrap
+	align-content: space-between
+	margin: 0 12px 12px 0
+
+	.book-wrapper
+		width: 100%
+		padding: 15px
+
+		figure
+			width: 100%
+			margin-bottom: 10px
+			text-align: center
+
+			img
+				width: 145px
+				height: 212px
+				display: inline-flex
+
+		.book-description
+			.book-title,
+			.book-authors
+				min-height: 18px
+				width: 100%
+				font-size: 1.4rem
+				line-height: 1.8rem
+				@include ellipsis
+
+			.book-authors
+				margin: 5px 0 0
+				font-weight: 300
+
+	&:hover .book-status
+		background-color: $black
+
+		select
+			color: $white
+
+	.book-status
+		width: 100%
+		background-color: $light-gray
+		@include hover-animation
+
+		select
+			width: 100%
+			background-color: transparent
+			color: $black
+			height: 45px
+			@include mobile-screen
+				height: 60px
