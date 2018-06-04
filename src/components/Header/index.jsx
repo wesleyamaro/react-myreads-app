@@ -14,7 +14,7 @@ class Header extends Component {
 						<Link to="/">MyReads App</Link>
 					</h1>
 
-					<Search onChangeSearchInput={(e) => this.props.onChangeSearchInput(e, this.props.history)} />
+					<Search onChangeSearchInput={(e) => this.props.onChangeSearchInput(e.target.value, this.props.history)} />
 				</div>
 			</header>
 		);
@@ -22,7 +22,8 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-	onChangeSearchInput: PropTypes.func.isRequired
+	onChangeSearchInput: PropTypes.func.isRequired,
+	history: PropTypes.object
 };
 
 export default withRouter(Header);
