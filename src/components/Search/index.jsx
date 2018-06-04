@@ -8,7 +8,7 @@ class Search extends Component {
 	render() {
 		return(
 			<DebounceInput
-				minLength={3}
+				minLength={1}
 				debounceTimeout={300}
 				className="search-input large"
 				placeholder="What are you looking for?"

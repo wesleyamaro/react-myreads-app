@@ -5,14 +5,12 @@ import Footer from '../Footer/';
 import HomePage from '../../pages/Home/';
 import SearchPage from '../../pages/Search/';
 import * as BooksAPI from '../../api/booksAPI';
-import * as TagsAPI from '../../api/tagsAPI';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			tags: [],
 			myBooks: {
 				currentlyReading: [],
 				read: [],
@@ -38,10 +36,6 @@ class App extends Component {
 				}
 			});
 		});
-
-		this.setState({
-			tags: TagsAPI.getAll()
-		});
 	}
 
 	onChangeMoveShelf(e, book, oldShelf) {
@@ -64,21 +58,25 @@ class App extends Component {
 	onChangeSearchInput(e, history) {
 		let val = e.target.value;
 
-		BooksAPI.search(val, 30).then((res) => {
-			this.setState({
-				booksOnSearch: {
-					query: val,
-					books: res ? res : res.items
+		if(val.length >= 1){
+			BooksAPI.search(val, 30).then((res) => {
+				if(res !== undefined) {
+					this.setState({
+						booksOnSearch: {
+							query: val,
+							books: res ? res : res.items
+						}
+					});
+
+					if(history.location.pathname !== '/search')
+						history.push('/search');
 				}
 			});
-
-			if(history.location.pathname !== '/search')
-				history.push('/search');
-		});
+		}
 	}
 
 	render() {
-		const { tags, myBooks, booksOnSearch } = this.state;
+		const { myBooks, booksOnSearch } = this.state;
 
 		return(
 			<div>
@@ -88,15 +86,13 @@ class App extends Component {
 					<Route exact path="/" render={() => (
 						<HomePage
 							myBooks={myBooks}
-							onChangeMoveShelf={this.onChangeMoveShelf}
-							tags={tags} />
+							onChangeMoveShelf={this.onChangeMoveShelf} />
 					)}/>
 
 					<Route path="/search" render={() => (
 						<SearchPage
 							booksOnSearch={booksOnSearch}
-							onChangeMoveShelf={this.onChangeMoveShelf}
-							tags={tags} />
+							onChangeMoveShelf={this.onChangeMoveShelf} />
 					)}/>
 				</main>
 
