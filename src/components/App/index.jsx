@@ -78,7 +78,7 @@ class App extends Component {
 
 		return(
 			<div>
-				<Header onChangeSearchInput={this.onChangeSearchInput} />
+				<Header keyOnSearch={booksOnSearch.query} onChangeSearchInput={this.onChangeSearchInput} />
 
 				<main>
 					<Route exact path="/" render={() => (

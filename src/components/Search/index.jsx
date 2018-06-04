@@ -6,18 +6,22 @@ import './index.sass';
 
 class Search extends Component {
 	render() {
+		const {keyOnSearch, onChangeSearchInput} = this.props;
+
 		return(
 			<DebounceInput
 				minLength={1}
 				debounceTimeout={300}
 				className="search-input large"
 				placeholder="What are you looking for?"
-				onChange={this.props.onChangeSearchInput} />
+				value={keyOnSearch}
+				onChange={onChangeSearchInput} />
 		);
 	}
 }
 
 Search.propTypes = {
+	keyOnSearch: PropTypes.string,
 	onChangeSearchInput: PropTypes.func.isRequired
 };
 

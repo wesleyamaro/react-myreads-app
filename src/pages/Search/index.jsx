@@ -12,7 +12,7 @@ class SearchPage extends Component {
 
 		return(
 			<div id="search-page" className="wrapper">
-				<CloudTags onChangeTagsInput={onChangeTagsInput} />
+				<CloudTags keyOnSearch={booksOnSearch.query} onChangeTagsInput={onChangeTagsInput} />
 
 				{
 					booksOnSearch.books.length >= 1 ? (

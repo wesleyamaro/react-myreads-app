@@ -7,6 +7,8 @@ import './index.sass';
 
 class Header extends Component {
 	render() {
+		const { keyOnSearch, onChangeSearchInput, history } = this.props;
+
 		return(
 			<header>
 				<div className="wrapper">
@@ -14,7 +16,9 @@ class Header extends Component {
 						<Link to="/">MyReads App</Link>
 					</h1>
 
-					<Search onChangeSearchInput={(e) => this.props.onChangeSearchInput(e.target.value, this.props.history)} />
+					<Search
+						keyOnSearch={keyOnSearch}
+						onChangeSearchInput={(e) => onChangeSearchInput(e.target.value, history)} />
 				</div>
 			</header>
 		);
@@ -23,7 +27,8 @@ class Header extends Component {
 
 Header.propTypes = {
 	onChangeSearchInput: PropTypes.func.isRequired,
-	history: PropTypes.object
+	history: PropTypes.object,
+	keyOnSearch: PropTypes.string
 };
 
 export default withRouter(Header);

@@ -21,7 +21,7 @@ class CloudTags extends Component {
 	}
 
 	render() {
-		const {onChangeTagsInput, history} = this.props;
+		const {onChangeTagsInput, history, keyOnSearch} = this.props;
 		const {tags} = this.state;
 
 		return(
@@ -30,6 +30,7 @@ class CloudTags extends Component {
 					tags.map((tag, i) => {
 						return(
 							<li
+								className={keyOnSearch && keyOnSearch === tag ? 'cloud-tags--active' : ''}
 								key={i}
 								onClick={() => onChangeTagsInput(tag, history)}>{tag}
 							</li>
@@ -43,6 +44,7 @@ class CloudTags extends Component {
 
 CloudTags.propTypes = {
 	history: PropTypes.object,
+	keyOnSearch: PropTypes.string,
 	onChangeTagsInput: PropTypes.func.isRequired,
 };
 
