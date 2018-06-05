@@ -42,7 +42,7 @@ class App extends Component {
 						currentlyReading: obj.filter(val => val.shelf === 'currentlyReading'),
 						read: obj.filter(val => val.shelf === 'read'),
 						wantToRead: obj.filter(val => val.shelf === 'wantToRead'),
-						related: res.length ? res : ''
+						related: res.length ? res : []
 					}
 				});
 			});
