@@ -22,7 +22,7 @@ class SearchPage extends Component {
 					booksOnSearch.books.length >= 1 ? (
 						<div>
 							<h1>{booksOnSearch.books.length} result(s) for "<span>{booksOnSearch.query}</span>"</h1>
-							<ul>
+							<ul className="search-page-results">
 								{
 									booksOnSearch.books.map(book => {
 										return(

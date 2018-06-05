@@ -22,7 +22,7 @@ class EmptySearch extends Component {
 				{relatedBooks && relatedBooks.length > 0 &&
 					<div>
 						<h1>You may be interested in</h1>
-						<ul>
+						<ul className="search-page-results">
 							{
 								relatedBooks.map(book => {
 									return(
