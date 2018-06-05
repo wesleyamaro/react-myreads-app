@@ -9,13 +9,16 @@ class Search extends Component {
 		const {keyOnSearch, onChangeSearchInput} = this.props;
 
 		return(
-			<DebounceInput
-				minLength={1}
-				debounceTimeout={300}
-				className="search-input large"
-				placeholder="What are you looking for?"
-				value={keyOnSearch}
-				onChange={onChangeSearchInput} />
+			<label className="search-label">
+				<i className="icon-search" />
+				<DebounceInput
+					minLength={1}
+					debounceTimeout={300}
+					className="search-input large"
+					placeholder="What are you looking for?"
+					value={keyOnSearch}
+					onChange={onChangeSearchInput} />
+			</label>
 		);
 	}
 }

@@ -38,7 +38,13 @@ class CloudTags extends Component {
 					})
 				}
 
-				<i className="icon-see-more" onClick={() => onClickExpandTags()}>{tagsOpened ? '-' : '+'}</i>
+				{
+					tagsOpened ? (
+						<i className="icon-arrow-up" onClick={() => onClickExpandTags()} />
+					): (
+						<i className="icon-arrow-down" onClick={() => onClickExpandTags()} />
+					)
+				}
 			</ul>
 		);
 	}

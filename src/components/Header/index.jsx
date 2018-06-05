@@ -13,7 +13,7 @@ class Header extends Component {
 			<header>
 				<div className="wrapper">
 					<h1>
-						<Link to="/">MyReads App</Link>
+						<Link to="/"> <i className="icon-book-opened" /> MyReads App</Link>
 					</h1>
 
 					<Search

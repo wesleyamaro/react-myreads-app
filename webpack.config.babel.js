@@ -26,9 +26,10 @@ export default {
 		}, {
 			test: /\.(ttf|eot|woff|woff2)$/,
 			use: [{
-				loader: 'file-loader',
+				loader: 'url-loader',
 				options: {
-					name: '/assets/fonts/[name].[ext]'
+					limit: 8000, // Convert images < 8kb to base64 strings
+					name: '/assets/fonts/[hash]-[name].[ext]'
 				}
 			}]
 		},{

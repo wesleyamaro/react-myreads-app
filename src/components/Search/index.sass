@@ -1,11 +1,17 @@
+@import '../../assets/styles/colors'
 @import '../../assets/styles/media-query'
 
-.search-input
-	padding-right: 40px
-	@include mobile-screen
-		margin-top: 15px
+.search-label
+	position: relative
 
-.icon-search
-	position: absolute
-	top: 5px
-	right: 5px
+	.search-input
+		padding-right: 40px !important
+		@include mobile-screen
+			margin-top: 15px
+
+	.icon-search
+		font-size: 2.5rem
+		position: absolute
+		top: 6px
+		right: 6px
+		color: $gray

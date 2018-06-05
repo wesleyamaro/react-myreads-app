@@ -23,22 +23,27 @@
 		@include mobile-screen
 			max-height: 50px
 
-	.icon-see-more
+	[class^="icon-"]
 		width: 46px
 		height: 46px
-		display: inline-block
+		display: inline-flex
+		align-content: center
 		overflow: hidden
-		text-align: center
+		justify-content: center
 		position: absolute
 		right: 0
 		top: 0
 		z-index: 5
-		font-size: 4rem
+		font-size: 3.5rem
 		color: $black
 		cursor: pointer
 		@include hover-animation
 		@include mobile-screen
 			display: none
+
+		&:before
+			display: inline-flex
+			align-self: center
 
 		&:hover
 			background-color: $light-gray

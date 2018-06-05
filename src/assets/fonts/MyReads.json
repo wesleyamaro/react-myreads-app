@@ -197,7 +197,11 @@
         },
         {
           "id": 47,
-          "order": 0
+          "order": 4,
+          "prevSize": 24,
+          "code": 59650,
+          "name": "arrow-down",
+          "tempChar": ""
         },
         {
           "id": 48,
@@ -209,7 +213,11 @@
         },
         {
           "id": 50,
-          "order": 0
+          "order": 5,
+          "prevSize": 24,
+          "code": 59651,
+          "name": "arrow-up",
+          "tempChar": ""
         },
         {
           "id": 51,
@@ -789,7 +797,7 @@
           "prevSize": 24,
           "code": 59649,
           "name": "search",
-          "tempChar": ""
+          "tempChar": ""
         },
         {
           "id": 195,
@@ -4842,6 +4850,5 @@
       "bgColor": 16777215
     },
     "historySize": 50
-  },
-  "time": 1527789046561
+  }
 }
