@@ -12,7 +12,7 @@ class BooksBox extends Component {
 				<div className="book-wrapper">
 					<figure>
 						<img
-							src={book.imageLinks ? book.imageLinks.thumbnail : ''}
+							src={book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : '../../assets/images/no-book.jpg'}
 							alt={book.title} />
 					</figure>
 
