@@ -5,6 +5,7 @@ import Footer from '../Footer/';
 import HomePage from '../../pages/Home/';
 import SearchPage from '../../pages/Search/';
 import * as BooksAPI from '../../api/booksAPI';
+import * as RelatedBooks from '../../api/relatedBooksAPI';
 
 class App extends Component {
 	constructor(props) {
@@ -14,7 +15,8 @@ class App extends Component {
 			myBooks: {
 				currentlyReading: [],
 				read: [],
-				wantToRead: []
+				wantToRead: [],
+				related: []
 			},
 			booksOnSearch: {
 				query: '',
@@ -30,12 +32,19 @@ class App extends Component {
 
 	componentDidMount() {
 		BooksAPI.getAll().then(obj => {
-			this.setState({
-				myBooks: {
-					currentlyReading: obj.filter(val => val.shelf === 'currentlyReading'),
-					read: obj.filter(val => val.shelf === 'read'),
-					wantToRead: obj.filter(val => val.shelf === 'wantToRead')
-				}
+			const relatedSubjects = RelatedBooks.favouriteBook(obj);
+
+			console.log('Keyword: ', relatedSubjects);
+
+			BooksAPI.search(relatedSubjects, 10).then(res => {
+				this.setState({
+					myBooks: {
+						currentlyReading: obj.filter(val => val.shelf === 'currentlyReading'),
+						read: obj.filter(val => val.shelf === 'read'),
+						wantToRead: obj.filter(val => val.shelf === 'wantToRead'),
+						related: res.length ? res : ''
+					}
+				});
 			});
 		});
 	}
@@ -64,7 +73,7 @@ class App extends Component {
 					this.setState({
 						booksOnSearch: {
 							query: val,
-							books: res ? res : res.items
+							books: res.length ? res : ''
 						}
 					});
 
@@ -105,7 +114,8 @@ class App extends Component {
 							onChangeMoveShelf={this.onChangeMoveShelf}
 							onChangeTagsInput={this.onChangeSearchInput}
 							onClickExpandTags={this.onClickExpandTags}
-							tagsOpened={tagsOpened} />
+							tagsOpened={tagsOpened}
+							relatedBooks={myBooks.related} />
 					)}/>
 				</main>
 

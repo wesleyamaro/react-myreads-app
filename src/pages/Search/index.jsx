@@ -8,11 +8,15 @@ import './index.sass';
 
 class SearchPage extends Component {
 	render() {
-		const { booksOnSearch, onChangeMoveShelf, onChangeTagsInput, tagsOpened, onClickExpandTags } = this.props;
+		const { booksOnSearch, onChangeMoveShelf, onChangeTagsInput, tagsOpened, onClickExpandTags, relatedBooks } = this.props;
 
 		return(
 			<div id="search-page" className="wrapper">
-				<CloudTags keyOnSearch={booksOnSearch.query} tagsOpened={tagsOpened} onChangeTagsInput={onChangeTagsInput} onClickExpandTags={onClickExpandTags} />
+				<CloudTags
+					keyOnSearch={booksOnSearch.query}
+					tagsOpened={tagsOpened}
+					onChangeTagsInput={onChangeTagsInput}
+					onClickExpandTags={onClickExpandTags} />
 
 				{
 					booksOnSearch.books.length >= 1 ? (
@@ -22,14 +26,17 @@ class SearchPage extends Component {
 								{
 									booksOnSearch.books.map(book => {
 										return(
-											<BooksBox key={book.id} book={book} onChangeMoveShelf={onChangeMoveShelf} />
+											<BooksBox
+												key={book.id}
+												book={book}
+												onChangeMoveShelf={onChangeMoveShelf} />
 										);
 									})
 								}
 							</ul>
 						</div>
 					) : (
-						<EmptySearch query={booksOnSearch.query} />
+						<EmptySearch relatedBooks={relatedBooks} query={booksOnSearch.query} onChangeMoveShelf={onChangeMoveShelf} />
 					)
 				}
 			</div>
@@ -42,7 +49,8 @@ SearchPage.propTypes = {
 	onChangeMoveShelf: PropTypes.func.isRequired,
 	onChangeTagsInput: PropTypes.func.isRequired,
 	tagsOpened: PropTypes.bool.isRequired,
-	onClickExpandTags: PropTypes.func.isRequired
+	onClickExpandTags: PropTypes.func.isRequired,
+	relatedBooks: PropTypes.array.isRequired
 };
 
 export default SearchPage;

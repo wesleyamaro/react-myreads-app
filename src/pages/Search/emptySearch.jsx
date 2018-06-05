@@ -1,23 +1,47 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import BooksBox from '../../components/BooksBox/';
+// import AliceCarousel from 'react-alice-carousel';
+import './emptySearch.sass';
 
 class EmptySearch extends Component {
 	render() {
-		const { query } = this.props;
+		const { query, relatedBooks, onChangeMoveShelf } = this.props;
 
 		return(
 			<div>
-				<h1>No result(s) for "<span>{query}</span>"</h1>
-				<ul className="search-page-results">
-					<li><p>No results found.</p></li>
-				</ul>
+				<div className="no-results">
+					<p>
+						We could not find any results
+						{query.length > 0 &&
+							<span> for <strong>{query}</strong></span>
+						}
+					</p>
+				</div>
+
+				{relatedBooks && relatedBooks.length > 0 &&
+					<div>
+						<h1>You may be interested in</h1>
+						<ul>
+							{
+								relatedBooks.map(book => {
+									return(
+										<BooksBox key={book.id} book={book} onChangeMoveShelf={onChangeMoveShelf} />
+									);
+								})
+							}
+						</ul>
+					</div>
+				}
 			</div>
 		);
 	}
 }
 
 EmptySearch.propTypes = {
-	query: PropTypes.string.isRequired
+	query: PropTypes.string.isRequired,
+	relatedBooks: PropTypes.array.isRequired,
+	onChangeMoveShelf: PropTypes.func.isRequired
 };
 
 export default EmptySearch;
