@@ -10,8 +10,11 @@ class CloudTags extends Component {
 		super(props);
 
 		this.state = {
-			tags: []
+			tags: [],
+			tagsOpened: false
 		};
+
+		this.OnClickSeeMore = this.OnClickSeeMore.bind(this);
 	}
 
 	componentDidMount() {
@@ -20,28 +23,32 @@ class CloudTags extends Component {
 		});
 	}
 
-	capitalizeWords(word) {
-		if(word && word.length > 1)
-			return word.charAt(0).toUpperCase() + word.slice(1);
+	OnClickSeeMore() {
+		const update = this.state.tagsOpened ? false : true;
+		this.setState({
+			tagsOpened: update
+		});
 	}
 
 	render() {
 		const {onChangeTagsInput, history, keyOnSearch} = this.props;
-		const {tags} = this.state;
+		const {tags, tagsOpened } = this.state;
 
 		return(
-			<ul className="cloud-tags">
+			<ul className={`cloud-tags ${tagsOpened ? 'opened' : ''}`}>
 				{
 					tags.map((tag, i) => {
 						return(
 							<li
-								className={keyOnSearch && this.capitalizeWords(keyOnSearch) === tag ? 'cloud-tags--active' : ''}
+								className={keyOnSearch && keyOnSearch.toLowerCase() === tag.toLowerCase() ? 'cloud-tags--active' : ''}
 								key={i}
 								onClick={() => onChangeTagsInput(tag, history)}>{tag}
 							</li>
 						);
 					})
 				}
+
+				<i className="icon-see-more" onClick={() => this.OnClickSeeMore()}>{tagsOpened ? '-' : '+'}</i>
 			</ul>
 		);
 	}
