@@ -19,11 +19,13 @@ class App extends Component {
 			booksOnSearch: {
 				query: '',
 				books: []
-			}
+			},
+			tagsOpened: false
 		};
 
 		this.onChangeMoveShelf = this.onChangeMoveShelf.bind(this);
 		this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
+		this.onClickExpandTags = this.onClickExpandTags.bind(this);
 	}
 
 	componentDidMount() {
@@ -73,8 +75,15 @@ class App extends Component {
 		}
 	}
 
+	onClickExpandTags() {
+		const update = this.state.tagsOpened ? false : true;
+		this.setState({
+			tagsOpened: update
+		});
+	}
+
 	render() {
-		const { myBooks, booksOnSearch } = this.state;
+		const { myBooks, booksOnSearch, tagsOpened } = this.state;
 
 		return(
 			<div>
@@ -85,14 +94,18 @@ class App extends Component {
 						<HomePage
 							myBooks={myBooks}
 							onChangeMoveShelf={this.onChangeMoveShelf}
-							onChangeTagsInput={this.onChangeSearchInput} />
+							onChangeTagsInput={this.onChangeSearchInput}
+							onClickExpandTags={this.onClickExpandTags}
+							tagsOpened={tagsOpened} />
 					)}/>
 
 					<Route path="/search" render={() => (
 						<SearchPage
 							booksOnSearch={booksOnSearch}
 							onChangeMoveShelf={this.onChangeMoveShelf}
-							onChangeTagsInput={this.onChangeSearchInput} />
+							onChangeTagsInput={this.onChangeSearchInput}
+							onClickExpandTags={this.onClickExpandTags}
+							tagsOpened={tagsOpened} />
 					)}/>
 				</main>
 

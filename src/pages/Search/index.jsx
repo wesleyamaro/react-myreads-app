@@ -8,11 +8,11 @@ import './index.sass';
 
 class SearchPage extends Component {
 	render() {
-		const { booksOnSearch, onChangeMoveShelf, onChangeTagsInput } = this.props;
+		const { booksOnSearch, onChangeMoveShelf, onChangeTagsInput, tagsOpened, onClickExpandTags } = this.props;
 
 		return(
 			<div id="search-page" className="wrapper">
-				<CloudTags keyOnSearch={booksOnSearch.query} onChangeTagsInput={onChangeTagsInput} />
+				<CloudTags keyOnSearch={booksOnSearch.query} tagsOpened={tagsOpened} onChangeTagsInput={onChangeTagsInput} onClickExpandTags={onClickExpandTags} />
 
 				{
 					booksOnSearch.books.length >= 1 ? (
@@ -40,7 +40,9 @@ class SearchPage extends Component {
 SearchPage.propTypes = {
 	booksOnSearch: PropTypes.object.isRequired,
 	onChangeMoveShelf: PropTypes.func.isRequired,
-	onChangeTagsInput: PropTypes.func.isRequired
+	onChangeTagsInput: PropTypes.func.isRequired,
+	tagsOpened: PropTypes.bool.isRequired,
+	onClickExpandTags: PropTypes.func.isRequired
 };
 
 export default SearchPage;

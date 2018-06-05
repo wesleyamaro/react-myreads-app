@@ -10,11 +10,8 @@ class CloudTags extends Component {
 		super(props);
 
 		this.state = {
-			tags: [],
-			tagsOpened: false
+			tags: []
 		};
-
-		this.OnClickSeeMore = this.OnClickSeeMore.bind(this);
 	}
 
 	componentDidMount() {
@@ -23,16 +20,9 @@ class CloudTags extends Component {
 		});
 	}
 
-	OnClickSeeMore() {
-		const update = this.state.tagsOpened ? false : true;
-		this.setState({
-			tagsOpened: update
-		});
-	}
-
 	render() {
-		const {onChangeTagsInput, history, keyOnSearch} = this.props;
-		const {tags, tagsOpened } = this.state;
+		const {onChangeTagsInput, history, keyOnSearch, onClickExpandTags, tagsOpened} = this.props;
+		const {tags } = this.state;
 
 		return(
 			<ul className={`cloud-tags ${tagsOpened ? 'opened' : ''}`}>
@@ -48,7 +38,7 @@ class CloudTags extends Component {
 					})
 				}
 
-				<i className="icon-see-more" onClick={() => this.OnClickSeeMore()}>{tagsOpened ? '-' : '+'}</i>
+				<i className="icon-see-more" onClick={() => onClickExpandTags()}>{tagsOpened ? '-' : '+'}</i>
 			</ul>
 		);
 	}
@@ -58,6 +48,8 @@ CloudTags.propTypes = {
 	history: PropTypes.object,
 	keyOnSearch: PropTypes.string,
 	onChangeTagsInput: PropTypes.func.isRequired,
+	onClickExpandTags: PropTypes.func.isRequired,
+	tagsOpened: PropTypes.bool.isRequired
 };
 
 export default withRouter(CloudTags);

@@ -5,11 +5,11 @@ import Shelf from '../../components/Shelf';
 
 class HomePage extends Component {
 	render() {
-		const { myBooks, onChangeTagsInput, onChangeMoveShelf } = this.props;
+		const { myBooks, onChangeTagsInput, onChangeMoveShelf, tagsOpened, onClickExpandTags } = this.props;
 
 		return(
 			<div className="wrapper">
-				<CloudTags onChangeTagsInput={onChangeTagsInput} />
+				<CloudTags tagsOpened={tagsOpened} onChangeTagsInput={onChangeTagsInput} onClickExpandTags={onClickExpandTags} />
 
 				<Shelf title="Currently reading" books={myBooks.currentlyReading} onChangeMoveShelf={onChangeMoveShelf} />
 				<Shelf title="Want to read" books={myBooks.wantToRead} onChangeMoveShelf={onChangeMoveShelf} />
@@ -22,7 +22,9 @@ class HomePage extends Component {
 HomePage.propTypes = {
 	myBooks: PropTypes.object.isRequired,
 	onChangeMoveShelf: PropTypes.func.isRequired,
-	onChangeTagsInput: PropTypes.func.isRequired
+	onChangeTagsInput: PropTypes.func.isRequired,
+	tagsOpened: PropTypes.bool.isRequired,
+	onClickExpandTags: PropTypes.func.isRequired
 };
 
 export default HomePage;
