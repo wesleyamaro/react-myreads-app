@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import noImage from '../../assets/images/no-book.jpg';
 
 import './index.sass';
 
@@ -12,7 +13,7 @@ class BooksBox extends Component {
 				<div className="book-wrapper">
 					<figure>
 						<img
-							src={book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : '../../assets/images/no-book.jpg'}
+							src={book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : noImage}
 							alt={book.title} />
 					</figure>
 

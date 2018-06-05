@@ -6,7 +6,7 @@ export default {
 	entry: ['babel-polyfill', './src/index.jsx'],
 	output: {
 		path: resolve(__dirname, '/public'),
-        filename: 'bundle.js'
+		filename: 'bundle.js'
 	},
 	resolve: {
 		extensions: ['.js', '.jsx']
@@ -24,18 +24,23 @@ export default {
 			exclude: /node_modules/,
 			loader: ['babel-loader']
 		}, {
-			test: /\.(ttf|eot|woff|woff2)(\?\S*)?$/,
-			loader: 'file-loader',
-			options: {
-			name: '/assets/fonts/[name].[ext]'
-			}
-        }, {
-			test: /\.(jpe?g|png|svg|gif)$/i,
-			loader: 'file-loader',
-			options: {
-			name: '/assets/images/[name].[ext]'
-			}
-        }]
+			test: /\.(ttf|eot|woff|woff2)$/,
+			use: [{
+				loader: 'file-loader',
+				options: {
+					name: '/assets/fonts/[name].[ext]'
+				}
+			}]
+		},{
+			test: /\.(png|jp(e*)g|svg)$/,
+			use: [{
+				loader: 'url-loader',
+				options: {
+					limit: 8000, // Convert images < 8kb to base64 strings
+					name: '/assets/images/[hash]-[name].[ext]'
+				}
+			}]
+		}]
 	},
 	plugins: [
 		HTMLWebpackPluginConfig

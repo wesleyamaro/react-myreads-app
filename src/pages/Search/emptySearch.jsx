@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import BooksBox from '../../components/BooksBox/';
-// import AliceCarousel from 'react-alice-carousel';
 import './emptySearch.sass';
 
 class EmptySearch extends Component {
