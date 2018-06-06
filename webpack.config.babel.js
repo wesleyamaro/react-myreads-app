@@ -1,11 +1,11 @@
-import { resolve } from 'path';
+/* global __dirname */
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({ template: __dirname + '/public/index.html' });
 
 export default {
 	entry: ['babel-polyfill', './src/index.jsx'],
 	output: {
-		path: resolve(__dirname, './public'),
+		path: __dirname + './public',
 		filename: 'bundle.js'
 	},
 	resolve: {
