@@ -3,11 +3,12 @@
 
 .search-label
 	position: relative
+	@include mobile-screen
+		width: 100%
+		margin-top: 15px
 
 	.search-input
 		padding-right: 40px !important
-		@include mobile-screen
-			margin-top: 15px
 
 	.icon-search
 		font-size: 2.5rem
