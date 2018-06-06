@@ -5,7 +5,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({ template: __dirname + '/
 export default {
 	entry: ['babel-polyfill', './src/index.jsx'],
 	output: {
-		path: resolve(__dirname, '/public'),
+		path: resolve(__dirname, './public'),
 		filename: 'bundle.js'
 	},
 	resolve: {
