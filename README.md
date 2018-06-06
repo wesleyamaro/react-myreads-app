@@ -17,7 +17,7 @@ Home Page
 
 Search Page
 * Should be shown a search input which allows the users to search
-* Should allow to move the books searched into your categories (or "shelves")
+* Should allow to move the books researched into their categories (or "shelves")
 * Should be shown at the Home Page all the changes that the users have made on them categories (or "shelves")
 
 Routing
