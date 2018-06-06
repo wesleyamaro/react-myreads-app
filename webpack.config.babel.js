@@ -1,3 +1,4 @@
+/* global __dirname  */
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({ template: __dirname + '/public/index.html' });
 
