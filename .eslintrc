@@ -5,7 +5,8 @@
 	},
 	"extends": [
 		"eslint:recommended",
-		"plugin:react/recommended"
+		"plugin:react/recommended",
+		"plugin:jest/recommended"
 	],
 	"parserOptions": {
 		"ecmaVersion": 8,
@@ -16,7 +17,8 @@
 		"sourceType": "module"
 	},
 	"plugins": [
-		"react"
+		"react",
+		"jest"
 	],
 	"rules": {
 		"no-debugger": "off",
@@ -40,6 +42,11 @@
 				"afterColon": true
 			}
 		],
-		"camelcase": "error"
+		"camelcase": "error",
+		"jest/no-disabled-tests": "warn",
+		"jest/no-focused-tests": "error",
+		"jest/no-identical-title": "error",
+		"jest/prefer-to-have-length": "warn",
+		"jest/valid-expect": "error"
 	}
 }

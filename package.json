@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -18,16 +19,28 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
+    "eslint-plugin-jest": "^21.17.0",
     "eslint-plugin-react": "^7.8.2",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.1.0",
+    "jest-localstorage-mock": "^2.2.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "webpack-cli": "^2.1.4"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|sass)$": "identity-obj-proxy",
+      "\\.(gif|jpg|png)$": "<rootDir>/src/__mocks__/fileMock.js"
+	},
+	"setupFiles": ["jest-localstorage-mock"]
+  },
   "scripts": {
-	"start": "node_modules/.bin/webpack-dev-server --inline --hot --mode development -w",
-	"build": "node_modules/.bin/webpack --mode development"
+    "start": "node_modules/.bin/webpack-dev-server --inline --hot --mode development -w",
+    "test": "jest",
+    "build": "node_modules/.bin/webpack --mode development"
   }
 }
