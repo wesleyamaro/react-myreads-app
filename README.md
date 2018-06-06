@@ -1,4 +1,4 @@
-# MyReads Project
+# MyReads Project [![Build Status](https://travis-ci.org/wesleyamaro/react-myreads-app.svg?branch=master)](https://travis-ci.org/wesleyamaro/react-myreads-app)
 This is the starter template for the final assessment project for Udacity's React Fundamentals course.
 
 ## TL;DR
