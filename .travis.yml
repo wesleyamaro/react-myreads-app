@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "node"
+cache:
+  directories:
+    - node_modules
+before_install:
+  - npm i
+script:
+  - npm start
+on:
+  branch: master
