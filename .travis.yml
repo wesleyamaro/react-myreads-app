@@ -7,6 +7,6 @@ cache:
 before_install:
   - npm i
 script:
-  - npm run build
+  - sudo npm run build
 on:
   branch: master
