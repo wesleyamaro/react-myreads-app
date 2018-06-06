@@ -27,6 +27,7 @@
     "webpack-cli": "^2.1.4"
   },
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --inline --hot --mode development -w"
+	"start": "node_modules/.bin/webpack-dev-server --inline --hot --mode development -w",
+	"build": "node_modules/.bin/webpack  --mode development"
   }
 }
