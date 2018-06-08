@@ -1,6 +1,6 @@
 /* global __dirname */
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({ template: __dirname + '/public/index.html' });
+import CleanWebpackPlugin from 'clean-webpack-plugin';
 
 export default {
 	entry: ['babel-polyfill', './src/index.jsx'],
@@ -44,14 +44,9 @@ export default {
 		}]
 	},
 	plugins: [
-		HTMLWebpackPluginConfig
-	],
-	devServer: {
-		contentBase: './public',
-		compress: true,
-		port: 8081,
-		watchContentBase: true,
-		clientLogLevel: 'error',
-		historyApiFallback: true
-	},
+		new HtmlWebpackPlugin({
+			template: __dirname + '/public/index.html'
+		}),
+		new CleanWebpackPlugin(['dist']),
+	]
 };

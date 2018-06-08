@@ -16,6 +16,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-plugin-react": "^7.8.2",
@@ -23,11 +24,13 @@
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
-    "webpack-cli": "^2.1.4"
+    "webpack-cli": "^2.1.4",
+    "webpack-merge": "^4.1.2"
   },
   "scripts": {
-	"start": "node_modules/.bin/webpack-dev-server --inline --hot --mode development -w",
-	"build": "node_modules/.bin/webpack --mode development"
+    "start": "node_modules/.bin/webpack-dev-server --config webpack.dev.config.babel.js --inline --hot -w",
+    "build": "node_modules/.bin/webpack -p --config webpack.prod.config.babel.js"
   }
 }
