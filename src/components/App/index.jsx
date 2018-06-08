@@ -34,13 +34,15 @@ class App extends Component {
 
 	componentDidMount() {
 		BooksAPI.getAll().then(obj => {
-			this.setState({
-				myBooks: {
-					currentlyReading: obj.filter(val => val.shelf === 'currentlyReading'),
-					read: obj.filter(val => val.shelf === 'read'),
-					wantToRead: obj.filter(val => val.shelf === 'wantToRead'),
-					related: this.buildRelatedBooks(obj)
-				}
+			this.buildRelatedBooks(obj).then(res => {
+				this.setState({
+					myBooks: {
+						currentlyReading: obj.filter(val => val.shelf === 'currentlyReading'),
+						read: obj.filter(val => val.shelf === 'read'),
+						wantToRead: obj.filter(val => val.shelf === 'wantToRead'),
+						related: res && res.length ? res : []
+					}
+				});
 			});
 		});
 	}
@@ -110,7 +112,7 @@ class App extends Component {
 
 		console.log('Keyword: ', relatedSubjects);
 
-		BooksAPI.search(relatedSubjects, 10).then(res => res.length ? this.checkShelvesStatus(res) : []);
+		return BooksAPI.search(relatedSubjects, 10).then(res => res && res.length ? this.checkShelvesStatus(res) : []);
 	}
 
 	render() {
