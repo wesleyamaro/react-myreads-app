@@ -7,7 +7,7 @@ class Footer extends Component {
 		return(
 			<footer>
 				<div className="wrapper">
-					<p>Wesley Amaro © 2018. Todos os direitos reservados.</p>
+					<p>Copyright © 2018 Wesley Amaro.</p>
 				</div>
 			</footer>
 		);
