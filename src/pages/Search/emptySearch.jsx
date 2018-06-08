@@ -39,7 +39,7 @@ class EmptySearch extends Component {
 
 EmptySearch.propTypes = {
 	query: PropTypes.string.isRequired,
-	relatedBooks: PropTypes.array.isRequired,
+	relatedBooks: PropTypes.array,
 	onChangeMoveShelf: PropTypes.func.isRequired
 };
 

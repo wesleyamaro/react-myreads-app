@@ -46,7 +46,7 @@ SearchPage.propTypes = {
 	onChangeTagsInput: PropTypes.func.isRequired,
 	tagsOpened: PropTypes.bool.isRequired,
 	onClickExpandTags: PropTypes.func.isRequired,
-	relatedBooks: PropTypes.array.isRequired
+	relatedBooks: PropTypes.array
 };
 
 export default SearchPage;
