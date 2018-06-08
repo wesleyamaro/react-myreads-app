@@ -67,7 +67,7 @@ class App extends Component {
 	}
 
 	onChangeSearchInput(val, history) {
-		if(val.length >= 1){
+		if(val.length){
 			BooksAPI.search(val, 30).then((res) => {
 				if(res !== undefined) {
 					this.setState({
@@ -79,6 +79,13 @@ class App extends Component {
 
 					if(history.location.pathname !== '/search')
 						history.push('/search');
+				}
+			});
+		} else {
+			this.setState({
+				booksOnSearch: {
+					query: '',
+					books: ''
 				}
 			});
 		}
