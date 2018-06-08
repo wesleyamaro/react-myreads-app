@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CloudTags from '../../components/CloudTags';
 import BooksBox from '../../components/BooksBox/';
@@ -6,43 +6,39 @@ import EmptySearch from './emptySearch';
 
 import './index.sass';
 
-class SearchPage extends Component {
-	render() {
-		const { booksOnSearch, onChangeMoveShelf, onChangeTagsInput, tagsOpened, onClickExpandTags, relatedBooks } = this.props;
+const SearchPage = ({ booksOnSearch, onChangeMoveShelf, onChangeTagsInput, tagsOpened, onClickExpandTags, relatedBooks }) => {
+	return(
+		<div id="search-page" className="wrapper">
+			<CloudTags
+				keyOnSearch={booksOnSearch.query}
+				tagsOpened={tagsOpened}
+				onChangeTagsInput={onChangeTagsInput}
+				onClickExpandTags={onClickExpandTags} />
 
-		return(
-			<div id="search-page" className="wrapper">
-				<CloudTags
-					keyOnSearch={booksOnSearch.query}
-					tagsOpened={tagsOpened}
-					onChangeTagsInput={onChangeTagsInput}
-					onClickExpandTags={onClickExpandTags} />
-
-				{
-					booksOnSearch.books.length >= 1 ? (
-						<div>
-							<h1>{booksOnSearch.books.length} result(s) for "<span>{booksOnSearch.query}</span>"</h1>
-							<ul className="search-page-results">
-								{
-									booksOnSearch.books.map(book => {
-										return(
-											<BooksBox
-												key={book.id}
-												book={book}
-												onChangeMoveShelf={onChangeMoveShelf} />
-										);
-									})
-								}
-							</ul>
-						</div>
-					) : (
-						<EmptySearch relatedBooks={relatedBooks} query={booksOnSearch.query} onChangeMoveShelf={onChangeMoveShelf} />
-					)
-				}
-			</div>
-		);
-	}
-}
+			{
+				booksOnSearch.books.length >= 1 ? (
+					<div>
+						<h1>{booksOnSearch.books.length} result(s) for "<span>{booksOnSearch.query}</span>"</h1>
+						<ul className="search-page-results">
+							{
+								booksOnSearch.books.map(book => {
+									return(
+										<BooksBox
+											key={book.id}
+											book={book}
+											onChangeMoveShelf={onChangeMoveShelf} />
+									);
+								})
+							}
+						</ul>
+					</div>
+				) : (
+					<EmptySearch relatedBooks={relatedBooks} query={booksOnSearch.query} onChangeMoveShelf={onChangeMoveShelf} />
+				)
+			}
+		</div>
+	);
+};
 
 SearchPage.propTypes = {
 	booksOnSearch: PropTypes.object.isRequired,

@@ -1,29 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Search from './Search/';
 
 import './index.sass';
 
-class Header extends Component {
-	render() {
-		const { keyOnSearch, onChangeSearchInput, history } = this.props;
+const Header = ({ keyOnSearch, onChangeSearchInput, history }) => {
+	return(
+		<header>
+			<div className="wrapper">
+				<h1>
+					<Link to="/"> <i className="icon-book-opened" /> MyReads App</Link>
+				</h1>
 
-		return(
-			<header>
-				<div className="wrapper">
-					<h1>
-						<Link to="/"> <i className="icon-book-opened" /> MyReads App</Link>
-					</h1>
-
-					<Search
-						keyOnSearch={keyOnSearch}
-						onChangeSearchInput={(e) => onChangeSearchInput(e.target.value, history)} />
-				</div>
-			</header>
-		);
-	}
-}
+				<Search
+					keyOnSearch={keyOnSearch}
+					onChangeSearchInput={(e) => onChangeSearchInput(e.target.value, history)} />
+			</div>
+		</header>
+	);
+};
 
 Header.propTypes = {
 	onChangeSearchInput: PropTypes.func.isRequired,

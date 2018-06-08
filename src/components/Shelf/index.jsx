@@ -1,34 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import EmptyShelf from './emptyShelf';
 import BooksBox from '../BooksBox/';
 
 import './index.sass';
 
-class Shelf extends Component {
-	render() {
-		const props = this.props;
-
-		return(
-			<div className="shelf">
-				<h2>{props.title}</h2>
-				<ul>
-					{
-						props.books.length ? (
-							props.books.map((book) => {
-								return(
-									<BooksBox key={book.id} book={book} onChangeMoveShelf={props.onChangeMoveShelf} />
-								);
-							})
-						) : (
-							<EmptyShelf />
-						)
-					}
-				</ul>
-			</div>
-		);
-	}
-}
+const Shelf = ({ books, title, onChangeMoveShelf }) => {
+	return(
+		<div className="shelf">
+			<h2>{title}</h2>
+			<ul>
+				{
+					books.length ? (
+						books.map((book) => {
+							return(
+								<BooksBox key={book.id} book={book} onChangeMoveShelf={onChangeMoveShelf} />
+							);
+						})
+					) : (
+						<EmptyShelf />
+					)
+				}
+			</ul>
+		</div>
+	);
+};
 
 Shelf.propTypes = {
 	title: PropTypes.string.isRequired,
