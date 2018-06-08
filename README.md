@@ -6,6 +6,7 @@ To get started developing right away:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+* it will be available on port 8081
 
 ## Requirements
 Home Page
