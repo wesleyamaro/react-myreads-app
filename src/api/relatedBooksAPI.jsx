@@ -1,4 +1,4 @@
-export const favouriteBook = (books) => {
+export const favoriteBook = (books) => {
 	const booksTitle = [];
 	books.map(book => {
 		if(book.title) {

@@ -28,11 +28,12 @@ class App extends Component {
 		this.onChangeMoveShelf = this.onChangeMoveShelf.bind(this);
 		this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
 		this.onClickExpandTags = this.onClickExpandTags.bind(this);
+		this.checkShelvesStatus = this.checkShelvesStatus.bind(this);
 	}
 
 	componentDidMount() {
 		BooksAPI.getAll().then(obj => {
-			const relatedSubjects = RelatedBooks.favouriteBook(obj);
+			const relatedSubjects = RelatedBooks.favoriteBook(obj);
 
 			console.log('Keyword: ', relatedSubjects);
 
@@ -42,7 +43,7 @@ class App extends Component {
 						currentlyReading: obj.filter(val => val.shelf === 'currentlyReading'),
 						read: obj.filter(val => val.shelf === 'read'),
 						wantToRead: obj.filter(val => val.shelf === 'wantToRead'),
-						related: res.length ? res : []
+						related: res.length ? this.checkShelvesStatus(res) : []
 					}
 				});
 			});
@@ -69,33 +70,44 @@ class App extends Component {
 	onChangeSearchInput(val, history) {
 		if(val.length){
 			BooksAPI.search(val, 30).then((res) => {
-				if(res !== undefined) {
-					this.setState({
-						booksOnSearch: {
-							query: val,
-							books: res.length ? res : ''
-						}
-					});
+				this.setState({
+					booksOnSearch: {
+						query: val,
+						books: res.length ? this.checkShelvesStatus(res) : []
+					}
+				});
 
-					if(history.location.pathname !== '/search')
-						history.push('/search');
-				}
+				if(history.location.pathname !== '/search')
+					history.push('/search');
 			});
 		} else {
 			this.setState({
 				booksOnSearch: {
 					query: '',
-					books: ''
+					books: []
 				}
 			});
 		}
 	}
 
 	onClickExpandTags() {
-		const update = this.state.tagsOpened ? false : true;
 		this.setState({
-			tagsOpened: update
+			tagsOpened: this.state.tagsOpened ? false : true
 		});
+	}
+
+	checkShelvesStatus(booksList) {
+		const booksOnShelves = [].concat(this.state.myBooks.currentlyReading).concat(this.state.myBooks.read).concat(this.state.myBooks.wantToRead);
+
+		booksList.filter(bookOnList => {
+			booksOnShelves.map(bookOnshelf => {
+				if(bookOnList.title === bookOnshelf.title) {
+					return bookOnList.shelf = bookOnshelf.shelf;
+				}
+			});
+		});
+
+		return booksList;
 	}
 
 	render() {
