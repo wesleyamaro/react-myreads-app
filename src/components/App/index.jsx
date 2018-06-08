@@ -29,23 +29,18 @@ class App extends Component {
 		this.onChangeSearchInput = this.onChangeSearchInput.bind(this);
 		this.onClickExpandTags = this.onClickExpandTags.bind(this);
 		this.checkShelvesStatus = this.checkShelvesStatus.bind(this);
+		this.buildRelatedBooks = this.buildRelatedBooks.bind(this);
 	}
 
 	componentDidMount() {
 		BooksAPI.getAll().then(obj => {
-			const relatedSubjects = RelatedBooks.favoriteBook(obj);
-
-			console.log('Keyword: ', relatedSubjects);
-
-			BooksAPI.search(relatedSubjects, 10).then(res => {
-				this.setState({
-					myBooks: {
-						currentlyReading: obj.filter(val => val.shelf === 'currentlyReading'),
-						read: obj.filter(val => val.shelf === 'read'),
-						wantToRead: obj.filter(val => val.shelf === 'wantToRead'),
-						related: res.length ? this.checkShelvesStatus(res) : []
-					}
-				});
+			this.setState({
+				myBooks: {
+					currentlyReading: obj.filter(val => val.shelf === 'currentlyReading'),
+					read: obj.filter(val => val.shelf === 'read'),
+					wantToRead: obj.filter(val => val.shelf === 'wantToRead'),
+					related: this.buildRelatedBooks(obj)
+				}
 			});
 		});
 	}
@@ -108,6 +103,14 @@ class App extends Component {
 		});
 
 		return booksList;
+	}
+
+	buildRelatedBooks(obj) {
+		const relatedSubjects = RelatedBooks.favoriteBook(obj);
+
+		console.log('Keyword: ', relatedSubjects);
+
+		BooksAPI.search(relatedSubjects, 10).then(res => res.length ? this.checkShelvesStatus(res) : []);
 	}
 
 	render() {

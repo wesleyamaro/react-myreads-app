@@ -1,32 +1,27 @@
 export const favoriteBook = (books) => {
-	const booksTitle = [];
-	books.map(book => {
-		if(book.title) {
-			const titles = book.title.split(' ').filter(cat => cat.length > 3);
-			booksTitle.push(titles);
-		}
-	});
+	let favorite = [];
 
-	const newArr = [];
-	booksTitle.map(cat => {
-		if(newArr.length) {
-			const result = newArr.filter(item => item.name === cat);
-			result.length ? result[0].qtde += 1 : newArr.push({ name: cat, qtde: 1 });
+	const booksTitle = books
+		.map(book => book.title.split(' ').filter(cat => cat.length > 3))
+		.reduce((acc, current) => acc.concat(current), [])
+		.reduce((all, name) => {
+			if(typeof all[name] !== 'undefined'){
+				all[name]++;
+			} else {
+				all[name]=1;
+			}
+
+			return all;
+		}, {});
+
+	for(const i in booksTitle){
+		if(favorite.length) {
+			if(favorite[0].qtde < booksTitle[i])
+				favorite = [{ name: i, qtde: booksTitle[i] }];
 		} else {
-			newArr.push({ name: cat, qtde: 1 });
+			favorite = [{ name: i, qtde: booksTitle[i] }];
 		}
-	});
+	}
 
-	let mainlyCategories = [];
-	newArr.map(item => {
-		if(mainlyCategories.length) {
-			const result = mainlyCategories.filter(a => a.qtde < item.qtde);
-			if(result.length)
-				mainlyCategories = item;
-		} else {
-			mainlyCategories.push({ name: item.name, qtde: item.qtde });
-		}
-	});
-
-	return mainlyCategories[0].name[0];
+	return favorite[0].name;
 };
