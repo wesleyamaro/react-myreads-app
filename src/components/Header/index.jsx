@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Search from '../Search/';
+import Search from './Search/';
 
 import './index.sass';
 

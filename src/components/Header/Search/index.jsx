@@ -13,7 +13,7 @@ class Search extends Component {
 				<i className="icon-search" />
 				<DebounceInput
 					minLength={1}
-					debounceTimeout={300}
+					debounceTimeout={200}
 					className="search-input large"
 					placeholder="What are you looking for?"
 					value={keyOnSearch}
