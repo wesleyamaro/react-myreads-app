@@ -94,11 +94,15 @@ class App extends Component {
 	}
 
 	checkShelvesStatus(booksList) {
-		const booksOnShelves = [].concat(this.state.myBooks.currentlyReading).concat(this.state.myBooks.read).concat(this.state.myBooks.wantToRead);
+		const booksOnShelves = [
+			...this.state.myBooks.currentlyReading,
+			...this.state.myBooks.read,
+			...this.state.myBooks.wantToRead
+		];
 
 		booksList.filter(bookOnList => {
 			booksOnShelves.map(bookOnshelf => {
-				if(bookOnList.title === bookOnshelf.title) {
+				if(bookOnList.id === bookOnshelf.id) {
 					return bookOnList.shelf = bookOnshelf.shelf;
 				}
 			});
@@ -110,9 +114,9 @@ class App extends Component {
 	buildRelatedBooks(obj) {
 		const relatedSubjects = RelatedBooks.favoriteBook(obj);
 
-		console.log('Keyword: ', relatedSubjects);
-
-		return BooksAPI.search(relatedSubjects, 10).then(res => res && res.length ? this.checkShelvesStatus(res) : []);
+		return BooksAPI.search(relatedSubjects, 10).then(res => {
+			res && res.length ? this.checkShelvesStatus(res) : [];
+		});
 	}
 
 	render() {
@@ -120,7 +124,9 @@ class App extends Component {
 
 		return(
 			<div>
-				<Header keyOnSearch={booksOnSearch.query} onChangeSearchInput={this.onChangeSearchInput} />
+				<Header
+					keyOnSearch={booksOnSearch.query}
+					onChangeSearchInput={this.onChangeSearchInput} />
 
 				<main>
 					<Route exact path="/" render={() => (
