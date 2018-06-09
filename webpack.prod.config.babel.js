@@ -17,8 +17,13 @@ export default merge(common, {
 	performance: {
 		hints: false
 	},
+	optimization: {
+		splitChunks: {
+			chunks: 'initial'
+		}
+	},
 	devServer: {
-		contentBase: './dist',
+		contentBase: './public',
 		compress: true
 	}
 });

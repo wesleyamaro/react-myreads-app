@@ -1,11 +1,14 @@
 /* global __dirname */
+import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 
 export default {
-	entry: ['babel-polyfill', './src/index.jsx'],
+	entry: {
+		main: ['babel-polyfill', './src/index.jsx']
+	},
 	output: {
-		path: __dirname + './public',
+		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js'
 	},
 	resolve: {
@@ -47,6 +50,6 @@ export default {
 		new HtmlWebpackPlugin({
 			template: __dirname + '/public/index.html'
 		}),
-		new CleanWebpackPlugin(['dist']),
+		new CleanWebpackPlugin(['./dist']),
 	]
 };
