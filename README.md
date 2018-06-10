@@ -1,6 +1,9 @@
 # MyReads Project [[![Build Status](https://travis-ci.org/wesleyamaro/react-myreads-app.svg?branch=master)](https://travis-ci.org/wesleyamaro/react-myreads-app)]
 This is the final assessment project for Udacity's React Fundamentals course using React with no Redux.
 
+## Available on Surge.sh
+[Check it out!](http://wesleyamaro-myreads.surge.sh/)
+
 ## Instructions
 To get started developing right away:
 
