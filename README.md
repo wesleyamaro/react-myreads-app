@@ -1,6 +1,8 @@
 # MyReads Project [[![Build Status](https://travis-ci.org/wesleyamaro/react-myreads-app.svg?branch=master)](https://travis-ci.org/wesleyamaro/react-myreads-app)]
 This is the final assessment project for Udacity's React Fundamentals course using React with no Redux.
 
+Create a bookcase application that allows us to select and sort books we've read, are reading, or want to read. The project emphasizes using React to build the application and provides an API server which we will use to persist information as we interact with the application.
+
 ## Available on Surge.sh
 [Check it out!](http://wesleyamaro-myreads.surge.sh/)
 
